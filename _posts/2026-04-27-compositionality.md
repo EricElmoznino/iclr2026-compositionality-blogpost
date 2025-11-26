@@ -48,12 +48,10 @@ toc:
       - name: Defining compositionality through algorithmic information theory
   - name: Section 3 — Implications and use-cases for AI
     subsections:
-      - name: Compositional structure all the way down
-      - name: The success of deep learning
-      - name: Data curricula and open-endedness
-      - name: Compositional structure diagrams
-      - name: What decompositions should we consider?
-      - name: Can compositionality be measured using this definition?
+      - name: Modeling hierarchical structure in the real world
+      - name: "The time dimension: open-endedness and data curricula"
+      - name: Visualizing and defining intrinsic structure
+      - name: "Practical use: estimation and design"
   - name: Conclusion
 ---
 
@@ -276,7 +274,7 @@ Once again, we need to emphasize that this definition only considers novel compo
 
 We’ve proposed a definition where compositionality is the emergence of novel structure shared between parts. While mathematically rigorous, is it useful? We believe this definition does more than just quantify; it offers a normative framework for understanding why current AI succeeds, how natural intelligence grows, and how we might architect the next generation of open-ended systems.
 
-## Modeling hierarchical reality
+## Modeling hierarchical structure in the real world
 
 Real-world data is rarely flat; it is compositional all the way down. Consider an image: simple edges form shapes, shapes form textures, textures form objects, and objects form scenes.
 
@@ -336,7 +334,7 @@ We favor the maximal tree $T_{max}(x)$ for several reasons:
   * **Different from sophistication:** There exists objects with the same sophistication $K(m_x)$ but *different* sums of compositionality terms under the maximal tree decomposition. This means that when we consider the maximal tree, our measure of compositionality does not simply reduce to sophistication — it quantifies a *kind* of structure rather than just the total amount of structure.  The opposite is true for *minimal* trees: there is always a trivial solution that merges every individual bit of a string in one single merge, resulting in a sum of compositionality terms equal to $K(m_x)$.
   * **Consistency:** It has a kind of recursive consistent: compositional substrings retain their structure under the maximal tree when embedded in larger compositional objects.
 
-## Practical horizons: estimation and design
+## Practical use: estimation and design
 
 Finally, we must address the elephant in the room: Kolmogorov complexity is uncomputable. Does this render the definition useless? Absolutely not.
 
