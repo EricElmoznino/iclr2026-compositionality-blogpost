@@ -12,20 +12,15 @@ mermaid:
   enabled: true
   zoomable: true
 
-# Anonymize when submitting
-# authors:
-#   - name: Anonymous
-
 authors:
-  - name: Anonymous
-  # - name: Albert Einstein
-  #   url: "https://en.wikipedia.org/wiki/Albert_Einstein"
-  #   affiliations:
-  #     name: IAS, Princeton
-  # - name: Boris Podolsky
-  #   url: "https://en.wikipedia.org/wiki/Boris_Podolsky"
-  #   affiliations:
-  #     name: IAS, Princeton
+  - name: Eric Elmoznino
+    url: "https://ericelmoznino.github.io/"
+    affiliations:
+      name: Mila — Quebec AI Institute, Université de Montréal, Google — Paradigms of Intelligence Team
+  - name: Guillaume Lajoie
+    url: "https://guillaumelajoie.com/"
+    affiliations:
+      name: Mila — Quebec AI Institute, Université de Montréal, Google — Paradigms of Intelligence Team
 
 # must be the exact same name as your blogpost
 bibliography: 2026-04-27-compositionality.bib
