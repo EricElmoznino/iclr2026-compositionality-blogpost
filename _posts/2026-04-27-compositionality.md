@@ -30,25 +30,25 @@ bibliography: 2026-04-27-compositionality.bib
 #     for hyperlinks within the post to work correctly.
 #   - please use this format rather than manually creating a markdown table of contents.
 toc:
-  - name: Section 1 — Compositionality as the emergence of novel shared structure
+  - name: "Section 1: Compositionality as the emergence of novel shared structure"
     subsections:
-      - name: Programs and libraries
-      - name: Growing and refactoring libraries
-      - name: Illustrative examples
-      - name: "Generalization to any object: good libraries as Occam’s razor models"
-  - name: Section 2 — A formal definition for quantifying compositionality
+      - name: "Programs and libraries"
+      - name: "Growing and refactoring libraries"
+      - name: "Illustrative examples"
+      - name: "Generalization to any object: good libraries as simple models"
+  - name: "Section 2: A formal definition for quantifying compositionality"
     subsections:
-      - name: Kolmogorov complexity and optimal compression
-      - name: Sophistication and Occam’s razor
-      - name: Defining compositionality through algorithmic information theory
-      - name: Relation to other notions of compositionality and structure
-  - name: Section 3 — Implications and use-cases for AI
+      - name: "Kolmogorov complexity and optimal compression"
+      - name: "Sophistication and simple models"
+      - name: "Defining compositionality through algorithmic information theory"
+      - name: "Relation to other notions of compositionality and structure"
+  - name: "Section 3: Implications and use-cases for AI"
     subsections:
       - name: "Can compositionality be measured using this definition?"
-      - name: Modeling hierarchical structure in the real world
+      - name: "Modeling hierarchical structure in the real world"
       - name: "Data curricula and open-endedness"
-      - name: Visualizing and defining intrinsic structure
-  - name: Conclusion
+      - name: "Visualizing and defining intrinsic structure"
+  - name: "Conclusion"
 ---
 
 What is compositionality? For those of us working in AI or cognitive neuroscience this question can appear easy at first, but becomes increasingly perplexing the more we think about it. We aren’t short on intuitions: we know that compositionality has something to do with reuse of parts, combinatorial expressive power, systematic generalization, and that natural language is a paradigmatic case, among other things. We seem to be able to glance at some data and say “yes, *that* is compositional!”, and we largely seem to agree on these judgments. But what is compositionality *really*, on a mathematical level, and can we quantify it?
@@ -57,11 +57,11 @@ Formalisms of intuitive concepts have proven incredibly useful in science, and f
 
 The purpose of this blog post is to **introduce a formal definition of compositionality**. We don’t promise that it’s perfect --- we have no experimental results and none of this has been vetted up to this point by peer review. Nevertheless, we feel like there’s enough here to warrant putting the ideas out in writing for the rest of the community to digest and criticize. As we hope you’ll find, the formal definition that we're going to propose is both simple and wide-reaching, capturing disparate notions of compositionality within a single equation that applies to any form of data (a neural representation, a dataset, a piece of art or music, a physical object, etc.). We’ll also say quite a bit about **what this definition of compositionality is useful for** in AI, since it has deep implications for how we should build neural architectures and, even more importantly, how we should go about training them through the design of data curricula that *maximize compositional structure*.
 
-This blog post can broadly be divided into three sections. In the [first part](#section-1--compositionality-as-the-emergence-of-novel-shared-structure), we’ll introduce the ideas at a purely *intuitive* level. In the [second part](#section-2--a-formal-definition-for-quantifying-compositionality), we’ll make these ideas formally precise by expressing them through the mathematics of algorithmic information theory and compression, culminating in a single succinct equation that quantifies compositional structure. In the [third and final section](#section-3--implications-and-use-cases-for-ai), we’ll discuss some practical implications of these ideas for AI, touching on topics such as how to model hierarchical structure and construct data curricula from which knowledge can grow compositionally into the future, in a boundless and open-ended way. If you're running out of steam by the end, we recommend you **prioritize section 3's entry on [data curricula and open-endedness](#data-curricula-and-open-endedness), as it is in our view the most consequential application of this definition of compositionality for the purposes of improving AI**.
+This blog post can broadly be divided into three sections. In the [first part](#section-1-compositionality-as-the-emergence-of-novel-shared-structure), we’ll introduce the ideas at a purely *intuitive* level. In the [second part](#section-2-a-formal-definition-for-quantifying-compositionality), we’ll make these ideas formally precise by expressing them through the mathematics of algorithmic information theory and compression, culminating in a single succinct equation that quantifies compositional structure. In the [third and final section](#section-3-implications-and-use-cases-for-ai), we’ll discuss some practical implications of these ideas for AI, touching on topics such as how to model hierarchical structure and construct data curricula from which knowledge can grow compositionally into the future, in a boundless and open-ended way. If you're running out of steam by the end, we recommend you **prioritize section 3's entry on [data curricula and open-endedness](#data-curricula-and-open-endedness), as it is in our view the most consequential application of this definition of compositionality for the purposes of improving AI**.
 
 ---
 
-# Section 1 — Compositionality as the emergence of novel shared structure
+# Section 1: Compositionality as the emergence of novel shared structure
 
 Paradigmatic examples of compositional data are easy to think of: a piece of music that recombines nested motifs and themes, an image dataset in which any given scene is made up of a combination of objects, a program that maximizes code reuse by defining a network of functions and classes, and of course natural language which can express an infinite set of ideas using a relatively small set of words and grammatical rules. Clearly, these examples have a lot in common, namely the notion of “parts” or “modules” which interact in complex cascades and at multiple scales to form the “whole” of the object.
 
@@ -95,7 +95,7 @@ We're therefore going to take another approach to defining the compositionality 
 >
 > A program is compositional with respect to some division into parts if the library that best compresses the whole differs from the libraries that best compress the parts.
 
-We want to quickly clarify a few things before moving on. First, even when we consider joining parts to make a whole, we’re asking whether or not *new* compositional structure emerges; even if it does not, the parts themselves might already have compositional structure. This brings us to our second point: this definition of compositionality can be recursively applied to the parts themselves in order to investigate compositionality hierarchically *at multiple scales*. Finally, this recursive property raises the question of *which* hierarchical decomposition(s) we should consider, which we’ll have more to say about later in [section 3](#section-3--implications-and-use-cases-for-ai).
+We want to quickly clarify a few things before moving on. First, even when we consider joining parts to make a whole, we’re asking whether or not *new* compositional structure emerges; even if it does not, the parts themselves might already have compositional structure. This brings us to our second point: this definition of compositionality can be recursively applied to the parts themselves in order to investigate compositionality hierarchically *at multiple scales*. Finally, this recursive property raises the question of *which* hierarchical decomposition(s) we should consider, which we’ll have more to say about later in [section 3](#section-3-implications-and-use-cases-for-ai).
 
 ## Illustrative examples
 
@@ -103,7 +103,7 @@ For a very abstract definition such as this one, there’s no substitute for con
 
 **Brief notation**
 
-To avoid things getting to cumbersome, it’s time to introduce a tiny bit of notation. We’ll call a program $x$ and its best library (the one that best compresses it) $m_x$. We’ll denote the parts that we decomposed the program into with subscripts. We’ll just consider splitting the program into two parts for the moment, so that gives us $x_a$ and $x_b$ as well as their corresponding best libraries $m_{x_a}$ and $m_{x_b}$. We also said that we’re quantifying novel compositional structure as the degree to which the library of the whole *changes* from the libraries of the parts, which implies some sort of distance metric. We’ll call this distance $K(m_x \mid m_{x_a}, m_{x_b})$ for reasons that will become clearer in [section 2](#section-2--a-formal-definition-for-quantifying-compositionality).
+To avoid things getting to cumbersome, it’s time to introduce a tiny bit of notation. We’ll call a program $x$ and its best library (the one that best compresses it) $m_x$. We’ll denote the parts that we decomposed the program into with subscripts. We’ll just consider splitting the program into two parts for the moment, so that gives us $x_a$ and $x_b$ as well as their corresponding best libraries $m_{x_a}$ and $m_{x_b}$. We also said that we’re quantifying novel compositional structure as the degree to which the library of the whole *changes* from the libraries of the parts, which implies some sort of distance metric. We’ll call this distance $K(m_x \mid m_{x_a}, m_{x_b})$ for reasons that will become clearer in [section 2](#section-2-a-formal-definition-for-quantifying-compositionality).
 
 **Novel shared structure: compositional**
 
@@ -138,7 +138,7 @@ Once again, our definition easily accounts for this case: $m_x$ is identical to 
 {: .notice--primary style="font-size:0.9em !important"}
 > **Box: Compositional generalization**
 >
-> We want to give another quick example along these same lines, but this time in the realm of computer vision, since it has important connections to machine learning and generalization. While we’ve just spoken about programs up to this point, this brief digression will foreshadow how we’ll soon generalize the ideas up to this point to arbitrary kinds of data. Imagine that $x_a$ is a dataset of (concatenated) scene images and that $x_b$ is one additional image (nothing says the two objects have to be the same size). For the moment, we can think of the “libraries” in this case as “models” or collections of concepts (objects, possible relations between objects, etc.), although we’ll make this much more precise in [section 2](#section-2--a-formal-definition-for-quantifying-compositionality).
+> We want to give another quick example along these same lines, but this time in the realm of computer vision, since it has important connections to machine learning and generalization. While we’ve just spoken about programs up to this point, this brief digression will foreshadow how we’ll soon generalize the ideas up to this point to arbitrary kinds of data. Imagine that $x_a$ is a dataset of (concatenated) scene images and that $x_b$ is one additional image (nothing says the two objects have to be the same size). For the moment, we can think of the “libraries” in this case as “models” or collections of concepts (objects, possible relations between objects, etc.), although we’ll make this much more precise in [section 2](#section-2-a-formal-definition-for-quantifying-compositionality).
 >
 > If $m_x = m_{x_a}$, it means that the new image $x_b$ consists entirely of known concepts, such that there is no additional structure it could provide. The new image $x_b$ contains the same objects, subparts, backgrounds, textures, and all other reusable structures that were already present in $m_{x_a}$. In this case, the best model of data $x_a$ is *also* the best explanation of $x = [x_a, x_b]$. This provides very general conditions under which we can meaningfully talk about *compositional generalization* and when it is even possible: a model can only compositionally generalize to new data, without undergoing additional learning, if that new data provides no additional compositional structure that would serve to change the model.
 
@@ -155,13 +155,13 @@ What does this look like for programs and libraries? Consider the example in Fig
 
 How does our definition account for this notion of compositionality? Effectively, we’ll have that $K(m_x \mid m_{x_a}, m_{x_a}) > 0$  because the implementation of the `norm` function in $m_x$ is a new component of the library --- it was implemented differently in $m_{x_b}$, and has to be rewritten. Granted, in this example $K(m_x \mid m_{x_a}, m_{x_a})$ will be quite small since the new `norm` function is very easy to write given the `matmul` function in $m_{x_a}$, but the point we’re making is more general. Whenever novel structures or concepts can be succinctly described in terms of others, our definition correctly identifies this as a case of compositionality.
 
-## Generalization to any object: good libraries as Occam’s razor models
+## Generalization to any object: good libraries as simple models
 
 We hope that the above discussion of programs and libraries has been helpful for building intuition about compositionality, but ultimately we need to generalize outside of this particular case. For this, we’ll be replacing the notion of a program with that of *any* arbitrary data that can be expressed in bits. This encompasses things like music, images, *iid* datasets, non-stationary data streams, neural representations, functions, natural language utterances, computer programs --- basically, anything that is scientifically interesting. The bigger question is: what should we replace the notion of the program’s *library* with? The analogous concept turns out to be a *model* of the data.
 
 A model, like a program’s library, captures *structure* in the data: patterns of information that repeat in some shape or form, either in a quite literal sense (like a repeating subsequence of bits) or in more abstract ways (like a rule or template with adjustable parameters). Just like in a computer program, the patterns of information captured by a model can be interdependent and hierarchically-defined, like in a deep neural network where representations are built upon each other.
 
-What all this means is that a model, like a program’s library, can *compress* the data in ways we’ll make more precise in [section 2](#section-2--a-formal-definition-for-quantifying-compositionality). A model can be thought of as a shorter explanation of a more complex object. If we give you a pattern of bits like `01001100011100001111...` and ask you what’s going on, you’ll probably say something like “alternate groups of 0’s and 1’s and increase the group size by one each time” --- that’s a model of the data (in this case a generative one) that can help us compress the string with far fewer bits because the model is simple and easy to encode. Even if the model isn’t perfect and has some degree of error (e.g., imagine corrupting the above string with a bit of noise), it can still help with compression because encoding the model along with a few error-correcting bits can be easier than encoding the entire string verbatim.
+What all this means is that a model, like a program’s library, can *compress* the data in ways we’ll make more precise in [section 2](#section-2-a-formal-definition-for-quantifying-compositionality). A model can be thought of as a shorter explanation of a more complex object. If we give you a pattern of bits like `01001100011100001111...` and ask you what’s going on, you’ll probably say something like “alternate groups of 0’s and 1’s and increase the group size by one each time” --- that’s a model of the data (in this case a generative one) that can help us compress the string with far fewer bits because the model is simple and easy to encode. Even if the model isn’t perfect and has some degree of error (e.g., imagine corrupting the above string with a bit of noise), it can still help with compression because encoding the model along with a few error-correcting bits can be easier than encoding the entire string verbatim.
 
 {: .notice--primary style="font-size:0.9em !important"}
 > **Box: Models of individual objects rather than datasets**
@@ -181,7 +181,7 @@ Notice that all of the illustrative examples covered earlier for computer progra
 
 ---
 
-# Section 2 — A formal definition for quantifying compositionality
+# Section 2: A formal definition for quantifying compositionality
 
 In this section, we’ll be formalizing all of the things we’ve said up to this point and making our definition of compositional structure mathematically precise. In particular, we’ll be clarifying the notion of an “Occam’s razor model” $m_x$ of data $x$, as well as the distance metric $K(m_x \mid m_{x_a}, m_{x_b})$ that we’ve been using to quantify novel compositional structure. Many might already have a very solid intuitive understanding of our definition at this point without the need for more formalisms, and this is no accident: the definition is built on the foundations of *algorithmic information theory*, which is one of the most intuitive yet powerful branches of mathematics we’ve encountered. Some parts of this section may feel tedious --- we’ll be introducing a lot of background and new notation --- but if you stick with it, we think that you’ll come away with not only a sharper understanding of compositionality, but also a deeper grasp of far-reaching concepts like information, complexity, structure, modeling, Occam’s razor, and compression.
 
@@ -209,7 +209,7 @@ There’s also a conditional notion of Kolmogorov complexity that will be useful
   <strong>Figure 5: Kolmogorov complexity and conditional Kolmogorov complexity.</strong>  Kolmogorov complexity is the length of the shortest program that outputs an object, and quantifies information through the lens of compression. Conditional Kolmogorov complexity is the length of a shortest program that takes one or more objects as input and outputs another.
 </div>
 
-## Sophistication and Occam’s razor
+## Sophistication and simple models
 
 While powerful, Kolmogorov complexity isn’t completely satisfying as a universal measure of information quantity because it makes no distinction between *meaningful,* *structural* information and *random, unstructured* information. This is easiest to explain through examples. Consider a binary string $x$ that consists exclusively of a repeating sequence of $1$’s: it’s intuitively quite a simple object, and indeed $K(x)$ is quite low because we can print $x$ using a simple for-loop. Now, consider the opposite case of a binary string $y$ that consists of an entirely random sequence of $0$’s and $1$’s: $K(y)$ is maximally large because we have no other choice but to hard-code $y$. In one respect this makes sense --- $y$ is incompressible, so in that respect it is indeed “complex”. But there is also a sense in which $y$ is strikingly simple, and in fact just as simple as a constant string like $x$. In particular, neither $y$ nor $x$ can really be said to have complex *structure*. They are equally boring. Even though $y$ must be described with a very large program, that program itself doesn’t contain much interesting logic outside of simply hard-coding bits, and the distribution from which $y$ might have been drawn would just take a few lines of code to define. In contrast, we can easily imagine a string $z$ that is also difficult to compress with high $K(z)$, but because it contains significant structure (i.e., interesting and sophisticated decompression code) rather than arbitrary randomness.
 
@@ -262,7 +262,7 @@ We now have all the tools that we need to formally define compositional structur
 >
 > *Note*: $l_{m_x}(x)$ represents the unstructured information in $x$ left unspecified by the model $m_x$. For instance, for the model class of computable probability distributions $l_{m_x}(x) = -\log_2 m_x(x)$.
 
-Once again, we need to emphasize that this definition only considers novel compositional structure in $x$ that wasn’t already present in $x_a$ or $x_b$ because it conditions on $m_{x_a}$ and $m_{x_b}$ --- for instance, novel shared structure between two images, such as objects that appear in both but not in either individually. This definition does *not* preclude the possibility that the individual substrings $x_a$ and $x_b$ might themselves have compositional structure, and indeed this is an advantage. As we’ll show in [section 3](#section-3--implications-and-use-cases-for-ai), this helps us easily think about hierarchical compositionality at *different scales*, since we can simply consider further divisions of the substrings $x_a$ and $x_b$ themselves.
+Once again, we need to emphasize that this definition only considers novel compositional structure in $x$ that wasn’t already present in $x_a$ or $x_b$ because it conditions on $m_{x_a}$ and $m_{x_b}$ --- for instance, novel shared structure between two images, such as objects that appear in both but not in either individually. This definition does *not* preclude the possibility that the individual substrings $x_a$ and $x_b$ might themselves have compositional structure, and indeed this is an advantage. As we’ll show in [section 3](#section-3-implications-and-use-cases-for-ai), this helps us easily think about hierarchical compositionality at *different scales*, since we can simply consider further divisions of the substrings $x_a$ and $x_b$ themselves.
 
 ## Relation to other notions of compositionality and structure
 
@@ -306,7 +306,7 @@ Interestingly, there is a deep connection between our definition and the daily p
 
 ---
 
-# Section 3 — Implications and use-cases for AI
+# Section 3: Implications and use-cases for AI
 
 We’ve proposed a definition where compositionality is the emergence of novel structure shared between parts. While mathematically rigorous, is it useful? We believe this definition does more than just quantify; it offers a normative framework for understanding why current AI succeeds, how natural intelligence grows, and how we might architect the next generation of open-ended systems.
 
